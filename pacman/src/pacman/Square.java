@@ -1,41 +1,25 @@
 package pacman;
 
 import java.util.Arrays;
-
+import java.util.List;
 
 /**
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
  * The top row and the leftmost column have index 0.
  */
 public class Square {
-	/**
-	 */
 	private MazeMap mazeMap;
 	private int rowIndex;
 	private int columnIndex;
 	
-	public MazeMap getMazeMap() {return mazeMap;}
+	public MazeMap getMazeMap() { return mazeMap; }
 	
-	/**
-	 * @basic
-	 * @post | result >= 0
-	 */
 	public int getRowIndex() { return rowIndex; }
 	
-	/**
-	 * @basic
-	 * @post | result >= 0
-	 */
 	public int getColumnIndex() { return columnIndex; }
 	
-	public boolean isPassable() { return getMazeMap().isPassable(getRowIndex(), getColumnIndex());}
-	
-
-	/**
-	 * @throws IllegalArugementException | mazeMap == null
-	 * @creates
-	 */
-	//Ik ben niet echt zeker of dit is wat deze functie zou moeten doen
+	public boolean isPassable() { return getMazeMap().isPassable(getRowIndex(), getColumnIndex()); }
+		
 	public static Square of(MazeMap mazeMap, int rowIndex, int columnIndex) {
 		if (mazeMap == null)
 			throw new IllegalArgumentException("The MazeMap must not be null");
@@ -53,31 +37,35 @@ public class Square {
 	// No formal documentation required
 	public Square getNeighbor(Direction direction) {
 		// Implementation hint: use method java.lang.Math.floorMod.
+
+		int NewColumnIndex = columnIndex;
+		int NewRowIndex = rowIndex;
+	
 		if (direction == Direction.LEFT)
-			if (columnIndex == 0)
-				columnIndex = mazeMap.getWidth() - 1;
+			if (NewColumnIndex == 0)
+				NewColumnIndex = mazeMap.getWidth() - 1;
 			else
-				columnIndex--;		
+				NewColumnIndex--;		
 			
 		if (direction == Direction.RIGHT)
-			if (columnIndex == mazeMap.getWidth() - 1)
-				columnIndex = 0;
+			if (NewColumnIndex == mazeMap.getWidth() - 1)
+				NewColumnIndex = 0;
 			else
-				columnIndex++;
+				NewColumnIndex++;
 			
 		if (direction == Direction.DOWN)
-			if (rowIndex == mazeMap.getHeight() - 1)
-				rowIndex = 0;
+			if (NewRowIndex == mazeMap.getHeight() - 1)
+				NewRowIndex = 0;
 			else
-				rowIndex++;
+				NewRowIndex++;
 			
 		if (direction == Direction.UP)
-			if (rowIndex == 0)
-				rowIndex = mazeMap.getHeight() - 1;
+			if (NewRowIndex == 0)
+				NewRowIndex = mazeMap.getHeight() - 1;
 			else
-				rowIndex--;
-		return of(mazeMap, rowIndex, columnIndex);	
-	}
+				NewRowIndex--;
+		return of(mazeMap, NewRowIndex, NewColumnIndex);	
+}
 
 
 	/**
@@ -85,8 +73,7 @@ public class Square {
 	 */
 	// No formal documentation required
 	public boolean canMove(Direction direction) {
-		Square neighborSquare = getNeighbor(direction);
-		return neighborSquare.isPassable();
+		return getNeighbor(direction).isPassable();
 	}
 
 	/**
@@ -94,8 +81,8 @@ public class Square {
 	 * The returned array shall have no null elements and shall have no duplicates.
 	 */
 	// No formal documentation required
-	// Veel te lange code geschreven die volgens mij wel werkt maar ik denk wel dat het korter kan
 	public Direction[] getPassableDirectionsExcept(Direction excludedDirection) {
+		
 		Direction[] directions = new Direction[4];
 		int elements = 0;
 		for (int i = 0; i < Direction.values().length ; i++)
@@ -112,14 +99,13 @@ public class Square {
 				result[i] = directions[i+k];
 			
 		return result;
-	}
-	
+	}		
 	/**
 	 * Returns whether the given square refers to the same {@code MazeMap} object and has the same row and column index as this square.  
 	 */
 	public boolean equals(Square other) {
 		return getMazeMap() == other.getMazeMap() 
 				&& getRowIndex() == other.getRowIndex()
-				 && getColumnIndex() == other.getColumnIndex();
+				 && getColumnIndex() == other.getColumnIndex();	
 	}
 }
