@@ -16,22 +16,27 @@ public class Square {
 	private MazeMap mazeMap;
 	private int rowIndex;
 	private int columnIndex;
+	
 	/**
 	 * @basic
 	 */
 	public MazeMap getMazeMap() { return mazeMap; }
+	
 	/**
 	 * @basic
+	 * @post | result >= 0
 	 */
-	// postcondities mogen volgens mij weg als je die @invars hierboven schrijft
 	public int getRowIndex() { return rowIndex; }
+	
 	/**
 	 * @basic
+	 * @post | result >= 0
 	 */
 	public int getColumnIndex() { return columnIndex; }
 	
 	public boolean isPassable() { 
 		return getMazeMap().isPassable(getRowIndex(), getColumnIndex());}
+	
 	/**
 	 * @throws IllegalArugementException | mazeMap == null
 	 * @creates | result

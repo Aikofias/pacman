@@ -31,7 +31,8 @@ public class PacMan {
 	 * @throws IllegalStateException | getNbLives() <=0
 	 * @mutates | this
 	 */
-	// niet zeker van @mutates
+	// niet heel zeker van @mutates
+	
 	public void die() { 
 		if (nbLives <= 0)
 			throw new IllegalStateException("You are already dead");

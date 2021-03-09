@@ -14,6 +14,7 @@ public class Ghost {
 	private Direction direction;
 	
 	// niet zeker dat @basic
+	// al deze soort codes kunnen simpeler geschreven worden zonder "this" te gebruiken	
 	public Square getSquare() { return square; }
 	
 	/**

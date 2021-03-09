@@ -19,15 +19,17 @@ public class MazeMap {
 	 */
 	/**
 	 * @basic
+	 * @post | result > 0
 	 */
-	// volgens mij mogen de postcondities hier weg omdat je dat hierboven al hebt gedefinieerd maar ben ni zeker
 	public int getWidth() { return width; }
 	
 	/**
 	 * Returns the height (i.e. the number of rows) of this maze map.
+	 * @post | result > 0
 	 */
-	public int getHeight() { return height; }
 	// niet zeker dat deze ook @basic is
+
+	public int getHeight() { return height; }
 	
 	/**
 	 * Returns whether the square in this maze at row index {@code row} and column index {@code column} is passable.

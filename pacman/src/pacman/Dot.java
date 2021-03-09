@@ -5,7 +5,7 @@ package pacman;
  */
 
 public class Dot {
-	// er moet volgens mij niets staan achter immutable
+	// er moet volgens mij niets staan achter @immutable
 	/**
 	 * @immutable
 	 */
